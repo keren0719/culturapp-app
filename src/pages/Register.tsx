@@ -29,7 +29,7 @@ const Register = () => {
   const [roles, setRoles] = useState<{ Id: number; Nombre: string }[]>([]);
   const [loading, setLoading] = useState(false);
   
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const API_BASE = import.meta.env.VITE_API_URL || "https://es-cultura-api-deploy-p.vercel.app/api";
 
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
