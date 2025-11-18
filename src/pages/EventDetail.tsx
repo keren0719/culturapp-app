@@ -89,38 +89,27 @@ const EventDetail = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchEventData = async () => {
-      setIsLoading(true);
-      try {
-
-
-        const loadEvents = async () => 
-        {
-            const allEvents = await apiapp.events.getById(id);
-            setEvent(allEvents);
-        };
-
-        loadEvents();
-
-        loadReviews();
-
-      } catch (error) {
-        console.log('Error:', error);
-        toast({
-            title: "Error",
-            description: "No se pudo cargar la información del evento",
-            variant: "destructive",
-        });
-      } finally {
+   const loadEvents = async () => 
+    {
+       try{
+          const allEvents = await apiapp.events.getById(id);
+          setEvent(allEvents);
+       }catch(error){
+         console.log('Error:', error);
+          toast({
+              title: "Error",
+              description: "No se pudo cargar la información del evento",
+              variant: "destructive",
+          });
+       } finally {
         setIsLoading(false);
       }
+      
     };
 
-    if (id) {
-      fetchEventData();
-    }
-
+  useEffect(() => {    
+    loadEvents();
+    loadReviews();      
   });
 
   const handleShare = () => {
@@ -371,3 +360,4 @@ const EventDetail = () => {
 };
 
 export default EventDetail;
+
