@@ -38,7 +38,7 @@ export const apiapp = {
 
       return result; // se devuelve limpio al frontend
     },
-    approveEvent: (idEvent: string) =>request(`/events/approveEvent/${idEvent}`),
+    approveEvent: (idEvent: string) =>request(`/events/publishEvent/${idEvent}`),
     rejectEvent: (idEvent: string, reason: string) =>
       request(`/events/rejectEvent/${idEvent}`, {
         method: "POST",
@@ -105,3 +105,4 @@ export const apiapp = {
   },
 
 };
+
