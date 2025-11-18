@@ -21,7 +21,7 @@ const Explore = () => {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [sortBy, setSortBy] = useState('date');
 
-  const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const API_BASE = import.meta.env.VITE_API_URL || 'https://es-cultura-api-deploy-p.vercel.app/api';
   const LIST_EVENTOS = `${API_BASE}/events/listExplorerEvents`;
 
   const loadCategories = async () => {
