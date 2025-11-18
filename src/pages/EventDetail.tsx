@@ -65,7 +65,7 @@ interface Review {
 const EventDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-    const { toast } = useToast();
+  const { toast } = useToast();
   const [event, setEvent] = useState<Event | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -84,33 +84,36 @@ const EventDetail = () => {
         description: "No se pudieron cargar las reseñas del evento",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
-   const loadEvents = async () => 
-    {
-       try{
-          const allEvents = await apiapp.events.getById(id);
-          setEvent(allEvents);
-       }catch(error){
-         console.log('Error:', error);
-          toast({
-              title: "Error",
-              description: "No se pudo cargar la información del evento",
-              variant: "destructive",
-          });
-       } finally {
-        setIsLoading(false);
-      }
-      
-    };
+   const loadEvents = async () => {
+    try {
+      const allEvents = await apiapp.events.getById(id);
+      setEvent(allEvents);
+    } catch (error) {
+      console.log('Error:', error);
+      toast({
+        title: "Error",
+        description: "No se pudo cargar la información del evento",
+        variant: "destructive",
+      });
+    }
+  };
 
-  useEffect(() => {    
-    loadEvents();
-    loadReviews();      
-  });
+  useEffect(() => {
+    if (!id) return;
+  
+    const loadData = async () => {
+      setIsLoading(true);
+      await loadEvents();
+      await loadReviews();
+      setIsLoading(false);
+    };
+  
+    loadData();
+  }, [id]);
+
 
   const handleShare = () => {
     if (navigator.share) {
@@ -360,4 +363,5 @@ const EventDetail = () => {
 };
 
 export default EventDetail;
+
 
