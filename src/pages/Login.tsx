@@ -228,7 +228,7 @@ const Login = () => {
   e.preventDefault();
   setLoading(true);
 
-  const API_BASE = import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api";
+  const API_BASE = import.meta.env.REACT_APP_API_URL || "https://es-cultura-api-deploy-p.vercel.app/api";
   const LOGIN_ENDPOINT = `${API_BASE}/users/loginUser`;
 
   const payload = {
