@@ -1,5 +1,5 @@
 // Mock API configuration
-const API_BASE = import.meta.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE = import.meta.env.REACT_APP_API_URL || 'https://es-cultura-api-deploy-p.vercel.app/api';
 
 async function request(endpoint: string, options: RequestInit = {}) {
   const res = await fetch(`${API_BASE}${endpoint}`, {
@@ -103,4 +103,5 @@ export const apiapp = {
     delete: (userId: string, roleId: string) =>
       request(`/user_roles/${userId}/${roleId}`, { method: 'DELETE' }),
   },
+
 };
